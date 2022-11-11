@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZCOMPANY_POLICIES_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="domain_values" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="id_domain_code"/>
+                    <PropertyRef Name="id_domain_value"/>
+                </Key>
+                <Property Name="id_domain_code" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="ID Domain Code" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="id_domain_value" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="ID Domain Value" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="domain_code" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Domain Code" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="domain_value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Domain Value" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pguid"/>
+                    <PropertyRef Name="Pno"/>
+                </Key>
+                <Property Name="Pguid" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Policy No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Title/Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Valid To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Docstatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Doc Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyHierarchy" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="NodeID"/>
+                    <PropertyRef Name="PolicyNo"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="NodeID" Type="Edm.Int16" Nullable="false" sap:hierarchy-node-for="NodeID" sap:unicode="false" sap:label="Signed INT2 / int16" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PolicyNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HierarchyLevel" Type="Edm.Int16" Nullable="false" sap:hierarchy-level-for="NodeID" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ParentNodeID" Type="Edm.Int32" sap:hierarchy-parent-node-for="NodeID" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DrillState" Type="Edm.String" MaxLength="20" sap:hierarchy-drill-state-for="NodeID" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GroupId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Approver" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IsGroup" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pno"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="Pno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Policy No"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:label="Version"/>
+                <Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Group ID" sap:filterable="false"/>
+                <Property Name="DocTypeDesc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Title/Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Content" sap:sortable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Valid From" sap:sortable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Valid To" sap:sortable="false"/>
+                <Property Name="Scope" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Scope" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Location" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Location" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserGroup" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="UserGroup" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Risk" Type="Edm.Int16" sap:unicode="false" sap:label="Risk" sap:sortable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Status" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Type" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Purpose" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Purpose" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Docstatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Doc Status" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApproveFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Approve Flag" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RejectFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Reject Flag" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Approver" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Approved By" sap:sortable="false"/>
+                <Property Name="ApproveAt" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Approved On" sap:sortable="false"/>
+                <Property Name="RejectReason" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Reject Reason" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RegisPolicyNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Registered Policy No" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:sortable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Updated By" sap:sortable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created On" sap:sortable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Updated On" sap:sortable="false"/>
+                <NavigationProperty Name="Attachment" Relationship="ZCOMPANY_POLICIES_SRV.PolicyDetailToAttachment" FromRole="FromRole_PolicyDetailToAttachment" ToRole="ToRole_PolicyDetailToAttachment"/>
+            </EntityType>
+            <EntityType Name="PolicyAttachments" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Pno"/>
+                    <PropertyRef Name="Version"/>
+                    <PropertyRef Name="FileName"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="ID"/>
+                <Property Name="Pno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Policy No"/>
+                <Property Name="Mime" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Char255"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:label="Version"/>
+                <Property Name="Url" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="URL prefix" sap:filterable="false"/>
+                <Property Name="FileName" Type="Edm.String" Nullable="false" MaxLength="255" m:FC_TargetPath="SyndicationTitle" m:FC_KeepInContent="false" sap:unicode="false" sap:label="Char255" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Value"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:sortable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyText" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Textid"/>
+                </Key>
+                <Property Name="Textid" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="TDIC text name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Content" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CONTENT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mime" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DomainData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Name"/>
+                    <PropertyRef Name="Key"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Key" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="UserDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="uname"/>
+                </Key>
+                <Property Name="uname" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="isAdmin" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="firstName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="lastName" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyAcceptance" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pno"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="Pno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Empcode" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Accepted" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rejected" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Time Stamp" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Time Stamp" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyEmployee" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pno"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="Pno" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Policy No"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:label="Version"/>
+                <Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Group ID" sap:filterable="false"/>
+                <Property Name="DocTypeDesc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Title/Description" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Text" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Content" sap:sortable="false"/>
+                <Property Name="ValidFrom" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Valid From" sap:sortable="false"/>
+                <Property Name="ValidTo" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Valid To" sap:sortable="false"/>
+                <Property Name="Scope" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Scope" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Location" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Location" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UserGroup" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="UserGroup" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Risk" Type="Edm.Int16" sap:unicode="false" sap:label="Risk" sap:sortable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Status" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Type" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Purpose" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Purpose" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Docstatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Doc Status" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApproveFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Approve Flag" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RejectFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Reject Flag" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Approver" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Approved By" sap:sortable="false"/>
+                <Property Name="ApproveAt" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Approved On" sap:sortable="false"/>
+                <Property Name="RejectReason" Type="Edm.String" Nullable="false" MaxLength="200" sap:unicode="false" sap:label="Reject Reason" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RegisPolicyNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Registered Policy No" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AceptStatus" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:sortable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:sortable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Updated By" sap:sortable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Created On" sap:sortable="false"/>
+                <Property Name="ChangedOn" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Updated On" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="PolicyEmpHierarchy" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="NodeID"/>
+                    <PropertyRef Name="PolicyNo"/>
+                    <PropertyRef Name="Version"/>
+                </Key>
+                <Property Name="NodeID" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PolicyNo" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Version" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="1" sap:unicode="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HierarchyLevel" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Signed INT2 / int16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ParentNodeID" Type="Edm.Int32" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DrillState" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="20" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GroupId" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Approver" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="IsGroup" Type="Edm.Boolean" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <Association Name="PolicyDetailToAttachment" sap:content-version="1">
+                <End Type="ZCOMPANY_POLICIES_SRV.PolicyDetails" Multiplicity="1" Role="FromRole_PolicyDetailToAttachment"/>
+                <End Type="ZCOMPANY_POLICIES_SRV.PolicyAttachments" Multiplicity="*" Role="ToRole_PolicyDetailToAttachment"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PolicyDetailToAttachment">
+                        <PropertyRef Name="Pno"/>
+                        <PropertyRef Name="Version"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PolicyDetailToAttachment">
+                        <PropertyRef Name="Pno"/>
+                        <PropertyRef Name="Version"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZCOMPANY_POLICIES_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="domain_valuesSet" EntityType="ZCOMPANY_POLICIES_SRV.domain_values" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyHeaderSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyHierarchySet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyHierarchy" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyDetailsSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyAttachmentsSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyAttachments" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyTextSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DomainDataSet" EntityType="ZCOMPANY_POLICIES_SRV.DomainData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="UserDetailsSet" EntityType="ZCOMPANY_POLICIES_SRV.UserDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyAcceptanceSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyAcceptance" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyEmployeeSet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyEmployee" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PolicyEmpHierarchySet" EntityType="ZCOMPANY_POLICIES_SRV.PolicyEmpHierarchy" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="PolicyDetailToAttachmentSet" Association="ZCOMPANY_POLICIES_SRV.PolicyDetailToAttachment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PolicyDetailsSet" Role="FromRole_PolicyDetailToAttachment"/>
+                    <End EntitySet="PolicyAttachmentsSet" Role="ToRole_PolicyDetailToAttachment"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZCOMPANY_POLICIES_SRV.PolicyDetails" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Pno"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Version"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Text"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://s4ovh:8000/sap/opu/odata/sap/ZCOMPANY_POLICIES_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://s4ovh:8000/sap/opu/odata/sap/ZCOMPANY_POLICIES_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
